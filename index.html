@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/theme-toggle.css">
 
 
 
@@ -119,7 +120,15 @@
 	  
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Shravan Wable</a>
+	      <div class="d-flex align-items-center">
+	        <a class="navbar-brand" href="index.html">Shravan Wable</a>
+	        <!-- From Uiverse.io by JkHuger --> 
+	        <label for="theme" class="theme">
+	            <span class="theme__toggle-wrap">
+	                <input id="theme" class="theme__toggle" type="checkbox" role="switch" name="theme" value="dark">
+	            </span>
+	        </label>
+	      </div>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -681,6 +690,33 @@
   <script src="js/scrollax.min.js"></script>
   
   <script src="js/main.js"></script>
+    
+  <script>
+  // Theme Switcher
+  const themeToggle = document.getElementById('theme');
+  const body = document.body;
+
+  // Check for saved theme preference
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  themeToggle.checked = savedTheme === 'light';
+
+  // Set initial state (unchecked for dark mode)
+  if (savedTheme === 'dark') {
+      themeToggle.checked = false;
+  } else {
+      themeToggle.checked = true;
+  }
+
+  // Theme switch handler
+  themeToggle.addEventListener('change', function() {
+      if (this.checked) {
+          window.location.href = 'index-light.html';
+      } else {
+          window.location.href = 'index.html';
+      }
+      localStorage.setItem('theme', this.checked ? 'light' : 'dark');
+  });
+  </script>
     
   </body>
 </html>
